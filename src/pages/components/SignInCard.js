@@ -11,8 +11,9 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -33,12 +34,22 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [usernameError, setusernameError] = React.useState(false);
+  const [usernameErrorMessage, setusernameErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
+  //changed part by me
+  const [username, setUsername] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [name, setName] = React.useState();
+
+  const [error, setError] = React.useState();
+  const [message, setMessage] = React.useState("");
+  const [formState, setFormState] = React.useState(0);
+  const [open2, setOpen2] = React.useState(false);
+  //------------------
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -48,30 +59,30 @@ export default function SignInCard() {
   };
 
   const handleSubmit = (event) => {
-    if (emailError || passwordError) {
+    if (usernameError || passwordError) {
       event.preventDefault();
       return;
     }
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
   };
 
   const validateInputs = () => {
-    const email = document.getElementById('email');
+    const username = document.getElementById('username');
     const password = document.getElementById('password');
 
     let isValid = true;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
+    if (!username.value || !/\S+@\S+\.\S+/.test(username.value)) {
+      setusernameError(true);
+      setusernameErrorMessage('Please enter a valid username address.');
       isValid = false;
     } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
+      setusernameError(false);
+      setusernameErrorMessage('');
     }
 
     if (!password.value || password.value.length < 6) {
@@ -86,6 +97,9 @@ export default function SignInCard() {
     return isValid;
   };
 
+
+  
+
   return (
     <Card variant="outlined">
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -98,41 +112,68 @@ export default function SignInCard() {
       >
         Sign in
       </Typography>
+
+      {/* changed part by me */}
+      <div>
+        <Button varient={formState === 0 ? 'contained' : 'outlined'} onClick={() => setFormState(0)}>
+          Sign In
+        </Button>
+        <Button varient={formState === 1 ? 'contained' : 'outlined'} onClick={() => setFormState(1)}>
+          Sign Up
+        </Button>
+
+      </div>
+      {/* ------------------- */}
+
       <Box
         component="form"
         onSubmit={handleSubmit}
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
+        {formState === 1 ?
+          <FormControl>
+            <p>{name}</p>
+            <FormLabel htmlFor="name">name</FormLabel>
+            <TextField
+              id="name"
+              type="name"
+              name="name"
+              placeholder="name"
+              autoComplete="name"
+              autoFocus
+              required
+              fullWidth
+              variant="outlined"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </FormControl> : <> </>
+        }
+
+
         <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="username">username</FormLabel>
           <TextField
-            error={emailError}
-            helperText={emailErrorMessage}
-            id="email"
-            type="email"
-            name="email"
-            placeholder="your@email.com"
-            autoComplete="email"
+            error={usernameError}
+            helperText={usernameErrorMessage}
+            id="username"
+            type="username"
+            name="username"
+            placeholder="username"
+            autoComplete="username"
             autoFocus
             required
             fullWidth
             variant="outlined"
-            color={emailError ? 'error' : 'primary'}
+            color={usernameError ? 'error' : 'primary'}
+            onChange={(e) => setUsername(e.target.value)}
+
           />
         </FormControl>
         <FormControl>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <FormLabel htmlFor="password">Password</FormLabel>
-            <Link
-              component="button"
-              type="button"
-              onClick={handleClickOpen}
-              variant="body2"
-              sx={{ alignSelf: 'baseline' }}
-            >
-              Forgot your password?
-            </Link>
+
           </Box>
           <TextField
             error={passwordError}
@@ -147,13 +188,13 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={passwordError ? 'error' : 'primary'}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
-        <ForgotPassword open={open} handleClose={handleClose} />
         <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
           Sign in
         </Button>

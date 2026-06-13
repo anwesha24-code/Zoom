@@ -12,6 +12,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+import { AuthContext } from '../../contexts/AuthContext';
+import { Snackbar } from '@mui/material';
 
 
 
@@ -49,6 +51,29 @@ export default function SignInCard() {
   const [message, setMessage] = React.useState("");
   const [formState, setFormState] = React.useState(0);
   const [open2, setOpen2] = React.useState(false);
+
+  const { handleRegister, handleLogin } = React.useContext(AuthContext);
+
+  let handleAuth = async () => {
+    try {
+      if (formState === 0) {
+        let result = await handleLogin(username, password);
+      }
+      if (formState === 1) {
+        let result = await handleRegister(name, username, password);
+        console.log(result);
+        setMessage(result);
+        setOpen2(true);
+        setError("");
+        setFormState(0);
+        setPassword("");
+      }
+    }
+    catch (error) {
+      let message = (error.response.data.message);
+      setError(message);
+    }
+  }
   //------------------
   const handleClickOpen = () => {
     setOpen(true);
@@ -76,7 +101,7 @@ export default function SignInCard() {
 
     let isValid = true;
 
-    if (!username.value || !/\S+@\S+\.\S+/.test(username.value)) {
+    if (!username.value) {
       setusernameError(true);
       setusernameErrorMessage('Please enter a valid username address.');
       isValid = false;
@@ -98,7 +123,7 @@ export default function SignInCard() {
   };
 
 
-  
+
 
   return (
     <Card variant="outlined">
@@ -110,7 +135,7 @@ export default function SignInCard() {
         variant="h4"
         sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
       >
-        Sign in
+        {formState === 0 ? "Sign In" : "Sign Up"}
       </Typography>
 
       {/* changed part by me */}
@@ -133,12 +158,13 @@ export default function SignInCard() {
       >
         {formState === 1 ?
           <FormControl>
-            <p>{name}</p>
             <FormLabel htmlFor="name">name</FormLabel>
             <TextField
               id="name"
               type="name"
               name="name"
+            value={name}
+
               placeholder="name"
               autoComplete="name"
               autoFocus
@@ -159,6 +185,7 @@ export default function SignInCard() {
             id="username"
             type="username"
             name="username"
+            value={username}
             placeholder="username"
             autoComplete="username"
             autoFocus
@@ -179,6 +206,7 @@ export default function SignInCard() {
             error={passwordError}
             helperText={passwordErrorMessage}
             name="password"
+            value={password}
             placeholder="••••••"
             type="password"
             id="password"
@@ -195,24 +223,40 @@ export default function SignInCard() {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
-          Sign in
+
+        <p style={{ color: "red" }}>{error}</p>
+
+        <Button type="submit" fullWidth variant="contained" onClick={validateInputs} onClick={handleAuth}>
+          {formState === 0 ? "Sign In" : "Sign Up"}
         </Button>
-        <Typography sx={{ textAlign: 'center' }}>
-          Don&apos;t have an account?{' '}
-          <span>
-            <Link
-              href="/material-ui/getting-started/templates/sign-in/"
-              variant="body2"
-              sx={{ alignSelf: 'center' }}
-            >
-              Sign up
-            </Link>
-          </span>
-        </Typography>
+        {/* <Typography sx={{ textAlign: "center" }}>
+          {formState === 0 ? (
+            <>
+              Don't have an account?{" "}
+              <Link
+                component="button"
+                variant="body2"
+                onClick={() => setFormState(1)}
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              Already have an account?{" "}
+              <Link
+                component="button"
+                variant="body2"
+                onClick={() => setFormState(0)}
+              >
+                Sign In
+              </Link>
+            </>
+          )}
+        </Typography> */}
       </Box>
       <Divider>or</Divider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      {/* <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Button
           fullWidth
           variant="outlined"
@@ -229,7 +273,9 @@ export default function SignInCard() {
         >
           Sign in with Facebook
         </Button>
-      </Box>
+      </Box> */}
+
+      <Snackbar open={open2} autoHideDuration={4000} message={message} onClose={() => setOpen2(false)} />
     </Card>
   );
 }

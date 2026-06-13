@@ -4,17 +4,6 @@ import SignInCard from './components/SignInCard';
 import Content from './components/Content';
 import React from 'react';
 export default function Authentication(props) {
-
-  //changed part by me
-  const [username,setUsername]=React.useState();
-  const [password,setPassword]=React.useState();
-  const [name,setName]=React.useState();
-
-  const [error,setError]=React.useState();
-  const [message,setMessage]=React.useState("");
-  const [formState,setFormState]=React.useState(0);
-  const [open, setOpen] = React.useState(false);
-  //------------------
   return (
     <>
       <CssBaseline enableColorScheme />

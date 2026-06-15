@@ -17,7 +17,7 @@ export const connectToSocket=(server)=>{
 
     io.on("connection",(socket)=>{
 
-        socket.on("accept-call",(path)=>{
+        socket.on("join-call",(path)=>{
             if(connections[path]===undefined){
                 connections[path]=[]
             }
@@ -45,7 +45,7 @@ export const connectToSocket=(server)=>{
             
             const [matchingRoom,found]=Object.entries(connections)
             .reduce(([room,isFound],[roomKey,roomValue])=>{
-                if(!isFound && rooomValue.includes(socket.id)){
+                if(!isFound && roomValue.includes(socket.id)){
                     return [roomKey,true]
                 }
                 return [room,isFound];

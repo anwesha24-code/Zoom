@@ -55,6 +55,7 @@ export default function SignInCard() {
   const { handleRegister, handleLogin } = React.useContext(AuthContext);
 
   let handleAuth = async () => {
+    console.log("Button clicked");
     try {
       if (formState === 0) {
         let result = await handleLogin(username, password);
@@ -83,16 +84,12 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    if (usernameError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      password: data.get('password'),
-    });
+  const handlebutton = async (event) => {
+    event.preventDefault();
+
+    if (!validateInputs()) return;
+
+    await handleAuth();
   };
 
   const validateInputs = () => {
@@ -140,10 +137,10 @@ export default function SignInCard() {
 
       {/* changed part by me */}
       <div>
-        <Button varient={formState === 0 ? 'contained' : 'outlined'} onClick={() => setFormState(0)}>
+        <Button variant={formState === 0 ? 'contained' : 'outlined'} onClick={() => setFormState(0)}>
           Sign In
         </Button>
-        <Button varient={formState === 1 ? 'contained' : 'outlined'} onClick={() => setFormState(1)}>
+        <Button variant={formState === 1 ? 'contained' : 'outlined'} onClick={() => setFormState(1)}>
           Sign Up
         </Button>
 
@@ -152,7 +149,7 @@ export default function SignInCard() {
 
       <Box
         component="form"
-        onSubmit={handleSubmit}
+        onbutton={handlebutton}
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
@@ -163,7 +160,7 @@ export default function SignInCard() {
               id="name"
               type="name"
               name="name"
-            value={name}
+              value={name}
 
               placeholder="name"
               autoComplete="name"
@@ -226,7 +223,13 @@ export default function SignInCard() {
 
         <p style={{ color: "red" }}>{error}</p>
 
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs} onClick={handleAuth}>
+        <Button
+          type="button"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          onClick={handleAuth}
+        >
           {formState === 0 ? "Sign In" : "Sign Up"}
         </Button>
         {/* <Typography sx={{ textAlign: "center" }}>

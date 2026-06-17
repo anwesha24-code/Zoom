@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { getUserHistory } from "D:/WebDev/MajorProject_Zoom/Backend/src/controllers/user.controller.js";
 
 export const AuthContext = createContext({});
 
@@ -11,7 +12,7 @@ const client = axios.create({
 export const AuthProvider = ({ children }) => {
     const authContext = useContext(AuthContext);
     const [userData, setUserData] = useState(authContext);
-    const router=useNavigate();
+    const router = useNavigate();
 
     const handleRegister = async (name, username, password) => {
         try {
@@ -29,27 +30,61 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const handleLogin=async(username,password)=>{
-        try{
+    const handleLogin = async (username, password) => {
+        try {
             let response = await client.post("/login", {
                 username,
                 password
             });
 
             if (response.status === 200) {
-                localStorage.setItem("token",response.data.token);
+                localStorage.setItem("token", response.data.token);
+                router("/home");
             }
         }
-        catch (err) {
+        catch (error) {
+            console.log(error.response);
+            console.log(error.response?.data);
+
+            let message =
+                error.response?.data?.message || "Login failed";
+
+            // setError(message);
+        }
+    }
+
+    const getHistoryOfUser = async () => {
+        try {
+            let request = await client.get("/get_all_activity", {
+                params: {
+                    token: localStorage.getItem("token")
+                }
+            });
+            return request.data
+        } catch (err) {
             throw err;
         }
     }
 
+    const addToUserHistory = async (meetingCode) => {
+        try {
+            console.log("Join clicked");
+            await client.post("/add_to_activity", {
+                token: localStorage.getItem("token"),
+                meeting_code: meetingCode
+            });
+            // return request
+        } catch (err) {
+            throw err;
+        }
+    }
     const data = {
         userData,
         setUserData,
         handleRegister,
-        handleLogin
+        handleLogin,
+        getHistoryOfUser,
+        addToUserHistory,
     };
 
     return (

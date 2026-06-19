@@ -35,7 +35,7 @@ export default function VideoMeetComponent() {
     let [video, setVideo] = useState();
     let [audio, setAudio] = useState();
     let [screen, setScreen] = useState();
-    let [showModal, setModal] = useState(true);
+    let [showModal, setModal] = useState(false);
     let [screenAvailable, setScreenAvailable] = useState();
     let [message, setMessage] = useState();
     let [messages, setMessages] = useState([]);
@@ -422,7 +422,7 @@ export default function VideoMeetComponent() {
 
             {askForUsername === true ?
 
-                <div>
+                <div className={styles.lobbyContainer}>
 
 
                     <h2>Enter into Lobby </h2>
@@ -493,11 +493,19 @@ export default function VideoMeetComponent() {
                     </div>
 
 
-                    <video className={styles.meetUserVideo} ref={localVideoRef} autoPlay muted></video>
+                    {/* <video className={styles.meetUserVideo} ref={localVideoRef} autoPlay muted></video> */}
 
                     <div className={styles.conferenceView}>
+                        <div className={styles.myVideoCard}>
+                            <video
+                                ref={localVideoRef}
+                                autoPlay
+                                muted
+                                className={styles.videoElement}
+                            />
+                        </div>
                         {videos.map((video) => (
-                            <div key={video.socketId}>
+                            <div key={video.socketId} className={styles.videoCard}>
                                 <video
 
                                     data-socket={video.socketId}

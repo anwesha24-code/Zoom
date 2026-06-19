@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import { IconButton } from '@mui/material';
-import 'D:/WebDev/MajorProject_Zoom/frontend/src/styles/history.css'; 
+import '../styles/history.css'; 
 
 export default function History() {
     const { getHistoryOfUser } = useContext(AuthContext);

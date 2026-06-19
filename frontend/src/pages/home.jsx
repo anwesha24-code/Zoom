@@ -3,7 +3,7 @@ import withAuth from '../utils/withAuth';
 import { useNavigate } from 'react-router-dom';
 import "../App.css"
 import { IconButton, TextField } from '@mui/material';
-import { AuthContext, addToUserHistory } from 'D:/WebDev/MajorProject_Zoom/frontend/src/contexts/AuthContext.jsx';
+import { AuthContext, addToUserHistory } from '../contexts/AuthContext';
 import { useState, Navigate } from 'react';
 import Button from '@mui/material/Button';
 import RestoreIcon from '@mui/icons-material/Restore';

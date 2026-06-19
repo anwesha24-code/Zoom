@@ -1,7 +1,7 @@
 .landingPageContainer{
   width:100vw;
   height:100vh;
-  background:url("D:/WebDev/MajorProject_Zoom/frontend/public/landingBackground.png");
+  background:url("../../public/landingBackground.png");
   /* background-repeat:repeat; */
   background-size:cover;
   color:white;

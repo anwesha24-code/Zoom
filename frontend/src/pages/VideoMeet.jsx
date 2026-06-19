@@ -485,7 +485,7 @@ export default function VideoMeetComponent() {
 
                             <div className={styles.chattingArea}>
                                 <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
-                                <Button variant='contained' onClick={sendMessage}>Send</Button>
+                                <Button variant='contained' onClick={sendMessage} style={{backgroundColor:"#9333ea"}}>Send</Button>
                             </div>
 
 

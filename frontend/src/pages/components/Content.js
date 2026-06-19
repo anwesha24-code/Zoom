@@ -1,55 +1,58 @@
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
+import VideoCamRoundedIcon from '@mui/icons-material/VideocamRounded';
+import SecurityRoundedIcon from '@mui/icons-material/SecurityRounded';
+import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
+import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import { SitemarkIcon } from './CustomIcons';
+import './SignInStyle.css'; // Shared layout file
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Adaptable performance',
+    icon: <VideoCamRoundedIcon className="content-icon" />,
+    title: 'Crystal Clear HD Quality',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      'Experience lag-free, ultra-high-definition video and spatial audio that feels like an in-person conversation.',
   },
   {
-    icon: <ConstructionRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Built to last',
+    icon: <SecurityRoundedIcon className="content-icon" />,
+    title: 'Enterprise-Grade Security',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+      'Keep your sensitive discussions confidential with end-to-end encrypted rooms and advanced host controls.',
   },
   {
-    icon: <ThumbUpAltRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Great user experience',
+    icon: <GroupsRoundedIcon className="content-icon" />,
+    title: 'Seamless Collaboration',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+      'Share screens, co-annotate, and capture insights automatically with built-in real-time collaboration tools.',
   },
   {
-    icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
-    title: 'Innovative functionality',
+    icon: <LinkRoundedIcon className="content-icon" />,
+    title: 'Instant Meeting Codes',
     description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Create or jump into recurring meeting spaces instantly with clean, easy-to-remember room URLs.',
   },
 ];
 
 export default function Content() {
   return (
     <Stack
+      className="content-stack"
       sx={{ flexDirection: 'column', alignSelf: 'center', gap: 4, maxWidth: 450 }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         <SitemarkIcon />
       </Box>
       {items.map((item, index) => (
-        <Stack key={index} direction="row" sx={{ gap: 2 }}>
+        <Stack key={index} direction="row" className="content-item-row" sx={{ gap: 2 }}>
           {item.icon}
           <div>
-            <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
+            <Typography variant="body1" className="content-title">
               {item.title}
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant="body2" className="content-description">
               {item.description}
             </Typography>
           </div>

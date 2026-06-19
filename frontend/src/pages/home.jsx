@@ -3,71 +3,86 @@ import withAuth from '../utils/withAuth';
 import { useNavigate } from 'react-router-dom';
 import "../App.css"
 import { IconButton, TextField } from '@mui/material';
-import { AuthContext,addToUserHistory } from 'D:/WebDev/MajorProject_Zoom/frontend/src/contexts/AuthContext.jsx';
-import { useState,Navigate } from 'react';
+import { AuthContext, addToUserHistory } from 'D:/WebDev/MajorProject_Zoom/frontend/src/contexts/AuthContext.jsx';
+import { useState, Navigate } from 'react';
 import Button from '@mui/material/Button';
-import RestoreIcon from '@mui/material/Icon';
+import RestoreIcon from '@mui/icons-material/Restore';
 function HomeComponent() {
 
-    let navigate=useNavigate();
-    const [meetingCode,setMeetingCode]=useState("");
-    const {addToUserHistory}=useContext(AuthContext);
-    let handleJoinVideoCall=async()=>{
+    let navigate = useNavigate();
+    const [meetingCode, setMeetingCode] = useState("");
+    const { addToUserHistory } = useContext(AuthContext);
+    let handleJoinVideoCall = async () => {
         await addToUserHistory(meetingCode)
         navigate(`/${meetingCode}`)
     }
     return (
-        <>
-        <div className='navBar'>
-            <div style={{display:"flex",alignItems:"center"}}>
+        <div className="homePage">
 
-                <h2>Apna Video Call</h2>
-            </div>
+            <nav className="navBar">
+<h2 className="logoTitle">
+    Gather
+    <img src="/mainLogo.png" alt="Gather Logo" />
+</h2>
+                <div className="navActions">
+                    <IconButton onClick={() => navigate("/history")}>
+                        <RestoreIcon />
+                    </IconButton>
 
-            <div style={{display:"flex",alignItems:"center"}}>
-                <IconButton onClick={
-                        () => {
-                            navigate("/history")
-                        }
-                    }>
-                    <RestoreIcon/>
-                    <p>History</p>
-                </IconButton>
-                <Button onClick={()=>{
-                    localStorage.removeItem("token");
-                    navigate("/auth")
-                }}>Logout
-                </Button>
-            </div>
-
-            <div className="meetContainer">
-                <div className="leftPanel">
-                    <div>
-                        <h2></h2>
-                        <div style={{display:"flex",gap:"10px"}}>
-                            <TextField onChange={e=>setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined"></TextField>
-                        <Button onClick={handleJoinVideoCall} variant="contained">Join</Button>
+                    <Button
+                        onClick={() => {
+                            localStorage.removeItem("token");
+                            navigate("/auth");
+                        }}
+                    >
+                        Logout
+                    </Button>
                 </div>
-                    </div>
-                    <div className="rightPanel">
-                        <img srcSet='/logo3.png' alt=""/>
+            </nav>
+
+            <div className="heroSection">
+
+                <div className="heroLeft">
+                    <h1>
+                        Premium Video Meetings
+                        <br />
+                        For Everyone
+                    </h1>
+
+                    <p>
+                        Connect, collaborate and communicate
+                        seamlessly with high-quality video calls.
+                    </p>
+
+                    <div className="joinBox">
+                        <TextField
+                            label="Meeting Code"
+                            variant="outlined"
+                            onChange={(e) =>
+                                setMeetingCode(e.target.value)
+                            }
+                        />
+
+                        <Button
+                            variant="contained"
+                            onClick={handleJoinVideoCall}
+                        >
+                            Join
+                        </Button>
                     </div>
                 </div>
+
+                <div className="heroRight">
+                    <img
+                        src="\home.png"
+                        alt="Video Meeting"
+                    />
+                </div>
+
             </div>
+</div>
 
-
-        </div>
-        </>
     )
-
-
-
-
-
-
-  return (
-    <div>HomeComponent</div>
-  )
 }
 
 export default withAuth(HomeComponent);

@@ -2,7 +2,7 @@
 .meetVideoContainer {
     width: 100vw;
     height: 100vh;
-    background: #111827;
+    background: #000000;
     overflow: hidden;
     position: relative;
 }
@@ -19,7 +19,7 @@
     border: 2px solid rgba(255,255,255,0.15);
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     z-index: 20;
-    background: #111827;
+    background: #000000;
 }
 .myVideoCard {
     position: fixed;
@@ -66,7 +66,7 @@
 
 /* Each Remote Video Card */
 .conferenceView > div {
-    background: #1e293b;
+    background: #000000;
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
@@ -82,7 +82,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background: #111827;
+    background: #000000;
 }
 
 /* Control Buttons Container */
@@ -97,7 +97,7 @@
     display: flex;
     gap: 15px;
 
-    background: rgba(17,24,39,0.9);
+    background: rgba(19, 28, 47, 0.9);
 
     backdrop-filter: blur(10px);
 
@@ -186,24 +186,82 @@
 }
 /* Lobby Screen */
 .lobbyContainer {
+    width: 100vw;
     height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b
-    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+}
+
+.lobbyCard {
+    width: 450px;
+
+    padding: 35px;
+
+    background: #111;
+
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 18px;
 }
 
-.lobbyContainer h2 {
+.lobbyCard h2 {
     color: white;
+    text-align: center;
     font-size: 2rem;
+    font-weight: 600;
+}
+
+.lobbySubtitle {
+    color: #b3b3b3;
+    text-align: center;
     margin-bottom: 10px;
+}
+
+.lobbyInput {
+    width: 100%;
+}
+
+.lobbyInput :global(.MuiOutlinedInput-root) {
+    background: white;
+    border-radius: 10px;
+}
+
+.lobbyButton {
+    width: 100%;
+    height: 50px;
+
+    background: #9333ea !important;
+    color: white !important;
+
+    border-radius: 10px !important;
+
+    text-transform: none !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+.lobbyButton:hover {
+    background: #7e22ce !important;
+}
+
+.lobbyVideo {
+    width: 100%;
+    aspect-ratio: 16/9;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    background: black;
+
+    border: 1px solid #2a2a2a;
 }
 .videoCard {
     position: relative;
@@ -271,4 +329,407 @@
         width: 46px;
         height: 46px;
     }
+}
+
+/* ===========================
+   LANDING PAGE
+=========================== */
+
+.landingPageContainer {
+    min-height: 100vh;
+    background: #000000;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ambient Glows */
+
+.landingPageContainer::before {
+    content: "";
+
+    position: absolute;
+
+    top: -250px;
+    left: -250px;
+
+    width: 600px;
+    height: 600px;
+
+    background: #9333ea;
+
+    opacity: 0.12;
+
+    filter: blur(180px);
+
+    pointer-events: none;
+}
+
+.landingPageContainer::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -250px;
+    right: -250px;
+
+    width: 600px;
+    height: 600px;
+
+    background: #9333ea;
+
+    opacity: 0.12;
+
+    filter: blur(180px);
+
+    pointer-events: none;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.landingPageContainer nav {
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 60px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    position: relative;
+    z-index: 5;
+}
+
+.landingPageContainer .navHeader h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.landingPageContainer .navlist {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.landingPageContainer .navlist p {
+    color: white;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.landingPageContainer .navlist p:hover {
+    color: #9333ea;
+}
+
+.landingPageContainer .navlist div {
+    background: linear-gradient(
+        135deg,
+        #9333ea,
+        #9333ea
+    );
+
+    padding: 10px 22px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.landingPageContainer .navlist div:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 20px rgba(67,217,217,0.4);
+}
+
+.landingPageContainer .navlist div p {
+    margin: 0;
+    color: white;
+}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.landingMainContainer {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 8%;
+
+    position: relative;
+    z-index: 5;
+}
+
+.landingMainContainer > div:first-child {
+    flex: 1;
+    max-width: 650px;
+}
+
+.landingMainContainer h1 {
+    color: white;
+
+    font-size: 4.5rem;
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+}
+
+.landingMainContainer h1 span {
+    color: #9333ea;
+
+    text-shadow:
+        0 0 15px rgba(67,217,217,0.6);
+}
+
+.landingMainContainer p {
+    color: #a1a1aa;
+
+    font-size: 1.2rem;
+
+    margin-bottom: 35px;
+}
+
+/* ===========================
+   GET STARTED BUTTON
+=========================== */
+
+.landingMainContainer a {
+    text-decoration: none;
+}
+
+.landingMainContainer [role="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #9333ea,
+        #9333ea
+    );
+
+    padding: 16px 32px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.landingMainContainer [role="button"]:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 25px rgba(67,217,217,0.4);
+}
+
+.landingMainContainer [role="button"] a {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.landingMainContainer img {
+    width: 100%;
+    max-width: 500px;
+
+    animation: landingFloat 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 30px rgba(67,217,217,0.25)
+        )
+        drop-shadow(
+            0 0 50px rgba(147,51,234,0.2)
+        );
+}
+
+@keyframes landingFloat {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1000px) {
+
+    .landingMainContainer {
+        flex-direction: column-reverse;
+
+        text-align: center;
+
+        padding: 40px;
+    }
+
+    .landingMainContainer h1 {
+        font-size: 3rem;
+    }
+
+    .landingMainContainer img {
+        max-width: 300px;
+        margin-bottom: 40px;
+    }
+
+    .landingPageContainer nav {
+        padding: 0 20px;
+    }
+
+    .landingPageContainer .navlist {
+        gap: 15px;
+    }
+}
+
+.lobbyContainer {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(67,217,217,0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(147,51,234,0.12),
+            transparent 35%
+        ),
+        #000000;
+}
+
+/* Main Card */
+
+.lobbyCard {
+    width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    background: rgba(15,15,15,0.9);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(67,217,217,0.2);
+
+    box-shadow:
+        0 0 25px rgba(67,217,217,0.12),
+        0 0 50px rgba(147,51,234,0.1);
+}
+
+.lobbyCard h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.lobbySubtitle {
+    margin: 0;
+
+    color: #b3b3b3;
+
+    text-align: center;
+
+    font-size: 0.95rem;
+}
+
+/* Input */
+
+.lobbyInput {
+    width: 100%;
+}
+
+.lobbyInput .MuiOutlinedInput-root {
+    background: white;
+    border-radius: 14px;
+}
+
+/* Button */
+
+.lobbyButton {
+    width: 100%;
+
+    height: 52px;
+
+    border-radius: 14px !important;
+
+    background: linear-gradient(
+        135deg,
+        #9333ea,
+        #9333ea
+    ) !important;
+
+    font-weight: 600 !important;
+
+    text-transform: none !important;
+}
+
+.lobbyButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(67,217,217,0.4) !important;
+}
+
+/* Video Preview */
+
+.lobbyVideo {
+    width: 100%;
+
+    aspect-ratio: 16/9;
+
+    border-radius: 18px;
+
+    object-fit: cover;
+
+    background: black;
+
+    border: 2px solid rgba(67,217,217,0.25);
+
+    box-shadow:
+        0 0 15px rgba(67,217,217,0.15);
 }

@@ -81,9 +81,9 @@ export default function SignInCard() {
       setusernameErrorMessage('');
     }
 
-    if (!password || password.length < 6) {
+    if (!password) {
       setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      setPasswordErrorMessage('Password must be at least 3 characters long.');
       isValid = false;
     } else {
       setPasswordError(false);

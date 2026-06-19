@@ -1,0 +1,66 @@
+/* Container styling */
+.history-container {
+    background-color: #000000;
+    min-height: 100vh;
+    padding: 2rem;
+    color: #ffffff;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Home Icon Button */
+.home-btn {
+    color: #9333ea !important;
+    margin-bottom: 2rem !important;
+    border: 1px solid rgba(147, 51, 234, 0.3) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.home-btn:hover {
+    background-color: rgba(147, 51, 234, 0.1) !important;
+    border-color: #9333ea !important;
+}
+
+/* Grid layout for meetings */
+.meetings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Professional Card Styling - Flat, Clean, and Solid */
+.meeting-card {
+    background-color: #0b0b0c !important;
+    border: 1px solid #27272a !important; /* Subtle dark grey border */
+    border-radius: 8px !important;
+    transition: border-color 0.2s ease-in-out !important;
+}
+
+/* Highlight border on hover without using glow/shadows */
+.meeting-card:hover {
+    border-color: #9333ea !important; 
+}
+
+/* Typography Overrides */
+.card-code {
+    color: #a1a1aa !important; /* Zinc text */
+    font-weight: 600 !important;
+    letter-spacing: 0.05em;
+}
+
+.card-code span {
+    color: #9333ea; /* Purple highlights for the code value */
+}
+
+.card-date {
+    color: #71717a !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Empty state message */
+.no-meetings {
+    color: #71717a;
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 1.1rem;
+}

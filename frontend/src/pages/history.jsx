@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../contexts/AuthContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import { IconButton } from '@mui/material';
+import 'D:/WebDev/MajorProject_Zoom/frontend/src/styles/history.css'; 
 
 export default function History() {
     const { getHistoryOfUser } = useContext(AuthContext);
@@ -19,69 +17,52 @@ export default function History() {
         const fetchHistory = async () => {
             try {
                 const history = await getHistoryOfUser();
-                // console.log(JSON.stringify(history, null, 2));
-                // console.log(typeof history);
-                // console.log(Array.isArray(history));
-
                 setMeetings(history);
-            } catch (err){
+            } catch (err) {
                 console.log(err);
             }
-        }
+        };
         fetchHistory();
-    }, [])
+    }, []);
 
-    //important for interview how to convert date to readable form
     let formatDate = (dateString) => {
-
         const date = new Date(dateString);
-        const day = date.getDate().toString().padStart(2, "0");
-        const month = (date.getMonth() + 1).toString().padStart(2, "0")
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear();
-
-        return `${day}/${month}/${year}`
-
-    }
+        return `${day}/${month}/${year}`;
+    };
 
     return (
-        <div>
-
-            <IconButton onClick={() => {
-                routeTo("/home")
-            }}>
+        <div className="history-container">
+            <IconButton 
+                className="home-btn" 
+                onClick={() => routeTo("/home")}
+            >
                 <HomeIcon />
-            </IconButton >
-            {
-                (meetings.length !== 0) ? meetings.map((e, i) => {
-                    return (
+            </IconButton>
 
-                        <>
+            {meetings.length !== 0 ? (
+                <div className="meetings-grid">
+                    {meetings.map((e, i) => (
+                        <Card key={i} className="meeting-card" variant="outlined">
+                            <CardContent>
+                                <Typography className="card-code" sx={{ fontSize: 14 }} gutterBottom>
+                                    Code: <span>{e.meetingCode}</span>
+                                </Typography>
 
-
-                            <Card key={i} variant="outlined">
-
-
-                                <CardContent>
-                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                        Code: {e.meetingCode}
-                                    </Typography>
-
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        Date: {formatDate(e.date)}
-                                    </Typography>
-
-                                </CardContent>
-
-
-                            </Card>
-
-
-                        </>
-                    )
-                }) : <></>
-
-            }
-
+                                <Typography className="card-date" sx={{ fontSize: 13 }}>
+                                    Date: {formatDate(e.date)}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            ) : (
+                <div className="no-meetings">
+                    <p>No meeting history found.</p>
+                </div>
+            )}
         </div>
-    )
+    );
 }

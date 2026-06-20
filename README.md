@@ -50,7 +50,7 @@
 
 Gather follows a full-stack architecture built with **React**, **Node.js**, **Express**, **MongoDB**, **Socket.IO**, and **WebRTC** to enable secure real-time video conferencing.
 
-![System Architecture](screenshots/architecture.png)
+![System Architecture](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/diagram.png)
 
 ### Frontend Layer
 
@@ -114,7 +114,7 @@ User A ↔ Socket.IO Signaling Server ↔ User B
 
 A sleek, dark-themed introduction featuring an intuitive user interface that invites users to connect seamlessly through high-quality video communication.
 
-![Landing Page](screenshots/main.png)
+![Landing Page](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/main.png)
 
 ---
 
@@ -122,7 +122,7 @@ A sleek, dark-themed introduction featuring an intuitive user interface that inv
 
 Secure user onboarding and login system built with encrypted credentials to protect user data and personalize the meeting experience.
 
-![Authentication](screenshots/signin.png)
+![Authentication](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/signin.png)
 
 ---
 
@@ -130,7 +130,7 @@ Secure user onboarding and login system built with encrypted credentials to prot
 
 A streamlined interface where users can instantly host or join a video session by entering a custom or shared meeting code.
 
-![Dashboard](screenshots/home.png)
+![Dashboard](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/home.png)
 
 ---
 
@@ -138,7 +138,7 @@ A streamlined interface where users can instantly host or join a video session b
 
 A pre-flight camera and microphone configuration screen allowing users to verify their audio/video feeds and set their display name before entering the room.
 
-![Lobby](screenshots/landing.png)
+![Lobby](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/landing.png)
 
 ---
 
@@ -146,7 +146,7 @@ A pre-flight camera and microphone configuration screen allowing users to verify
 
 A dynamic grid layout that effortlessly scales to support multiple simultaneous video streams with synchronized peer connections. Users can mute/unmute audio, toggle video, share screen, send/receive chat messages in real-time and communicate seamlessly during meetings.
 
-![Conference Room](screenshots/multipleuser.png)
+![Conference Room](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/multipleuser.png)
 
 ---
 
@@ -154,8 +154,8 @@ A dynamic grid layout that effortlessly scales to support multiple simultaneous 
 
 Integrated live text chat and ultra-low-latency screen sharing functionality to drive interactive presentations and real-time collaboration.
 
-![Screen Share](screenshots/screenshare1.png)
-![Chat & Screen Share](screenshots/screenshare.png)
+![Screen Share](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/screenshare1.png)
+![Chat & Screen Share](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/screenshare.png)
 
 ---
 
@@ -169,7 +169,7 @@ Create and share personalized meeting links, allowing participants to join sessi
 
 A dedicated historical log displaying a clean, chronological timeline of all past sessions and meeting codes for easy reference.
 
-![Meeting History](screenshots/history.png)
+![Meeting History](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/history.png)
 
 ---
 

@@ -25,6 +25,72 @@
 
 ## 🗂️ Project Structure
 ```
+├── Backend/
+│   ├── node_modules/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   ├── socketManager.js
+│   │   │   └── user.controller.js
+│   │   ├── models/
+│   │   │   ├── meeting.model.js
+│   │   │   └── user.model.js
+│   │   ├── routes/
+│   │   │   └── users.routes.js
+│   │   └── app.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── contexts/
+│   │   │   └── AuthContext.jsx
+│   │   ├── pages/
+│   │   │   ├── components/
+│   │   │   │   ├── Content.js
+│   │   │   │   ├── CustomIcons.js
+│   │   │   │   ├── SignInCard.js
+│   │   │   │   └── SignInStyle.css
+│   │   │   ├── authentication.jsx
+│   │   │   ├── history.jsx
+│   │   │   ├── home.jsx
+│   │   │   ├── landing.jsx
+│   │   │   └── VideoMeet.jsx
+│   │   ├── styles/
+│   │   │   ├── history.css
+│   │   │   ├── landingComponent.module.css
+│   │   │   └── videoComponent.module.css
+│   │   ├── utils/
+│   │   │   └── withAuth.jsx
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── App.test.js
+│   │   ├── environment.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── logo.svg
+│   │   ├── reportWebVitals.js
+│   │   └── setupTests.js
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
+├── images/
+├── node_modules/
+├── src/
+│   ├── controllers/
+│   │   ├── socketManager.js
+│   │   └── user.controller.js
+│   ├── models/
+│   │   ├── meeting.model.js
+│   │   └── user.model.js
+│   ├── routes/
+│   │   └── users.routes.js
+│   └── app.js
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
 
 ```
 

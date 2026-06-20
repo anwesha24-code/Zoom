@@ -114,66 +114,44 @@
 
 ## 🏗️ System Architecture
 
-Gather follows a full-stack architecture built with **React**, **Node.js**, **Express**, **MongoDB**, **Socket.IO**, and **WebRTC** to enable secure real-time video conferencing.
+Gather is a full-stack video conferencing platform built with **React**, **Node.js**, **Express**, **MongoDB**, **Socket.IO**, and **WebRTC**.
 
 ![System Architecture](https://github.com/anwesha24-code/Zoom/blob/dea3c8c5f3d9271050a46fccd3317cbc2ef0a4bc/images/diagram.png)
 
-### Frontend Layer
+### Frontend
 
-The frontend is built using React and is responsible for authentication, routing, meeting management, and user interactions.
+* **AuthContext** manages authentication state.
+* **Protected Routes** secure private pages.
+* **Landing, Authentication, Home, Video Meet, and History** pages handle the user experience.
 
-**Key Components**
+### Backend
 
-* **AuthContext** manages global authentication state.
-* **Route Guards** protect private routes from unauthorized access.
-* **Landing Page** serves as the application's entry point.
-* **Authentication Page** handles user sign-in and registration.
-* **Home Dashboard** allows users to create or join meetings.
-* **Video Meeting Room** manages video/audio streams, screen sharing, and chat.
-* **History Page** displays records of previous meetings.
+* **Express Server** handles API requests.
+* **User Routes & Controllers** manage authentication and business logic.
+* **Socket Manager** coordinates real-time signaling and room events.
 
-### Backend Layer
+### Database
 
-The backend is built with Node.js and Express and provides both REST APIs and real-time communication services.
+* **User Model** stores user information.
+* **Meeting Model** stores meeting details and history.
 
-**Core Modules**
+### Flow
 
-* **Express Server (`app.js`)** initializes the application and middleware.
-* **User Routes** expose authentication and user-related endpoints.
-* **User Controller** processes requests and business logic.
-* **Socket Manager** handles real-time signaling, room management, chat messages, and WebRTC event coordination.
+1. Users authenticate and access protected routes.
+2. Frontend communicates with Express APIs.
+3. Socket.IO handles real-time signaling.
+4. WebRTC establishes peer-to-peer audio, video, and screen-sharing connections.
+5. User and meeting data are stored in MongoDB.
 
-### Database Layer
-
-MongoDB is used for persistent storage through Mongoose models.
-
-**Collections**
-
-* **User Model** stores user credentials and profile information.
-* **Meeting Model** stores meeting metadata and meeting history.
-
-### Request Flow
-
-1. Users authenticate through the React frontend.
-2. Protected routes are validated using the authentication context.
-3. HTTP requests are sent to Express APIs for user and meeting operations.
-4. Socket.IO establishes real-time communication channels.
-5. WebRTC peer connections enable direct audio/video streaming between participants.
-6. Meeting and user information is persisted in MongoDB.
-7. Meeting history is retrieved and displayed through the History dashboard.
-
-### Real-Time Communication Flow
+### Real-Time Communication
 
 ```text
-User A ↔ Socket.IO Signaling Server ↔ User B
+User A ↔ Socket.IO ↔ User B
         ↓
-     WebRTC
+      WebRTC
         ↓
- Direct Peer-to-Peer
- Audio / Video / Screen Share
+ Audio • Video • Screen Share
 ```
-
-
 ## 🧭 Pages & Features
 
 ### 🎥 Landing Page (`/`)
@@ -184,7 +162,7 @@ A sleek, dark-themed introduction featuring an intuitive user interface that inv
 
 ---
 
-### 🔐 Sign In / Sign Up (`/login`, `/signup`)
+### 🔐 Sign In / Sign Up (`/auth`)
 
 Secure user onboarding and login system built with encrypted credentials to protect user data and personalize the meeting experience.
 
@@ -287,11 +265,8 @@ Create a `.env` file inside the backend directory:
 
 ```env
 PORT=5000
-
 MONGO_URI=your_mongodb_connection_string
-
 JWT_SECRET=your_jwt_secret
-
 CLIENT_URL=http://localhost:3000
 ```
 

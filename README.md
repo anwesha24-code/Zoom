@@ -253,6 +253,7 @@ https://gathervideofrontend-k2eo.onrender.com
 
 ---
 
+
 ## 🧰 Skills & Tools Used
 
 <p align="center">
@@ -260,7 +261,12 @@ https://gathervideofrontend-k2eo.onrender.com
 </p>
 
 <p align="center">
-  <b>Additional Technologies:</b> Material UI • WebRTC • Socket.IO • Mongoose • bcrypt • Crypto
+  <img src="https://img.shields.io/badge/Material_UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" />
+  <img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=webrtc&logoColor=white" />
+  <img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white" />
+  <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" />
+  <img src="https://img.shields.io/badge/bcrypt-4A90E2?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Crypto-FF6F00?style=for-the-badge&logo=securityscorecard&logoColor=white" />
 </p>
 
 ---
